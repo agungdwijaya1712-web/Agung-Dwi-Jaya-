@@ -1,0 +1,44 @@
+from collections import deque
+
+# Membuat antrian (queue) kosong
+antrian = deque()
+
+def enqueue(nama_pasien):
+    """Pasien datang → masuk antrian"""
+    antrian.append(nama_pasien)
+    print(f"✓ {nama_pasien} berhasil mendaftar. Nomor antrian: {len(antrian)}")
+
+def dequeue():
+    """Pasien dilayani → keluar dari antrian"""
+    if len(antrian) == 0:
+        print("Antrian kosong! Tidak ada pasien.")
+    else:
+        pasien = antrian.popleft()
+        print(f"→ {pasien} sedang dilayani.")
+
+def lihat_antrian():
+    """Melihat daftar antrian saat ini"""
+    if len(antrian) == 0:
+        print("Antrian kosong.")
+    else:
+        print(f"Antrian saat ini ({len(antrian)} orang): {list(antrian)}")
+
+# ============ SIMULASI ============
+print("=== Sistem Antrian Pasien ===\n")
+
+# Pasien datang (enqueue)
+enqueue("Neymar")
+enqueue("Messi")
+enqueue("Ronaldo")
+
+print()
+lihat_antrian()
+
+print()
+
+# Pasien dilayani (dequeue) - FIFO: yang pertama datang, pertama dilayani
+dequeue()
+dequeue()
+
+print()
+lihat_antrian()
